@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center p-5">
+
+
+    <div class="text-center ">
+        <h1 class="text-danger">Choose an Action</h1>
+        <div class="form-floating py-3">
+            <?php
+            echo $this->tag->linkTo(
+                [
+                    "products",
+                    "Add Products",
+                    "class" => "btn btn-lg btn-primary"
+                ]
+            )
+            ?>
+        </div>
+
+        <div class="form-floating py-3">
+            <?php
+            echo $this->tag->linkTo(
+                [
+                    "orders",
+                    "Add Orders",
+                    "class" => "btn btn-lg btn-success"
+                ]
+            )
+            ?>
+        </div>
+    </div>
+
+</div>

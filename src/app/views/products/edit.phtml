@@ -1,0 +1,128 @@
+<?php if (!isset($message)) $message = "";
+
+$array = (array)$data["variations"];
+// echo count($array);
+
+?>
+<div class="" style="margin-top: 8%;">
+
+    <?php echo $this->tag->form(""); ?>
+    <h1 class="text-success text-center">Update Product</h1>
+    <div class="row">]
+        <!-------------------------- Updating Additional Fields --------------------------------------->
+        <div class="col-md-4">
+           
+            <?php if (count($data["additional"]) > 0) {
+                ?>  <h2>Additional Fields</h2> <?php
+                foreach ((array)$data["additional"] as $key => $value) {
+                    $k = 1;
+            ?>
+                    <p>
+                        <input type="text" name="label-<?php echo $k ?>" value="<?php echo $key ?>" style="width: 80px;">
+                        <input type="text" name="value-<?php echo $k ?>" value="<?php echo $value ?>" style="width: 200px;">
+                    </p>
+            <?php    }
+            } ?>
+        </div>
+
+
+        <!-------------------------- Updating Required Fields --------------------------------------->
+
+        <div class="col-md-4">
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "name",
+                        "class" => "form-control",
+                        "value" => $data['Name']
+                    ]
+                ); ?>
+                <label for="name">Name</label>
+            </div>
+
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "categoryName",
+                        "class" => "form-control",
+                        "value" => $data['Category']
+
+                    ]
+                ); ?>
+                <label for="categoryName">Category Name</label>
+            </div>
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "price",
+                        "class" => "form-control",
+                        "value" => $data['price']
+
+                    ]
+                ); ?>
+                <label for="price">Price</label>
+            </div>
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "stock",
+                        "class" => "form-control",
+                        "value" => $data['stock']
+
+                    ]
+                ); ?>
+                <label for="stock">Stock</label>
+            </div>
+
+
+            <div class="form-floating ">
+                <?php echo $this->tag->submitButton(
+                    [
+                        "name" => "updateProduct",
+                        "class" => "btn btn-primary w-100",
+                        "value" => "Update Product"
+                    ]
+                ); ?>
+            </div>
+            <div>
+
+
+                <?php if ($message != "") { ?>
+                    <p class="text-danger">There is some error</p>
+                <?php } ?>
+            </div>
+        </div>
+
+        <!-------------------------- Updating Variatoions Fields --------------------------------------->
+
+        <div class="col-md-3">
+
+            <?php if (count($data["variations"]) > 0) {
+            ?> <h2>Variations</h2>
+                <?php
+
+                for ($i = 0; $i < count($data["variations"]); $i++) {
+                    $k = 0;
+                    $array = (array)$data["variations"][$i];
+                    // print_r($array);
+                    // die;
+                    foreach ($array as $key => $value) { 
+                        if($key != "price") {
+                        ?>
+                        <input type="text" name="labelV-<?php echo $i + 1 ?>-<?php echo ++$k?>" value="<?php echo $key ?>" style="width: 80px;">
+                        <input type="text" name="valueV-<?php echo $i + 1 ?>-<?php echo $k?>" value="<?php echo $value ?>" style="width: 140px;"><br>
+
+                    <?php } }
+                    ?>
+                    <p>
+                        <input type="text" name="priceV-<?php echo $i + 1 ?>" value="<?php echo $array["price"] ?>" style="width: 70px;">
+                    </p>
+            <?php    }
+            } ?>
+        </div>
+
+    </div>
+
+
+    </form>
+</div>

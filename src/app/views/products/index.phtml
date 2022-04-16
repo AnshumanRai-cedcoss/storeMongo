@@ -1,0 +1,106 @@
+<?php if (!isset($message)) $message = "" ?>
+<div class=" p-5">
+
+    <?php echo $this->tag->form(""); ?>
+    <div class="row">
+        <h1 class="text-success text-center">Add Products</h1>
+        <div class="col-md-4 p-0 m-0" >
+            <p class="text-primary text-center" style="background-color:#B0C4DE;"><b>Add more fields</b>
+                <button type="button" id="show" style="border:none;background-color:#B0C4DE;">
+                    <img src="../../../public/assets/images/add.jpg" height="22px" width="22px" alt="">
+                </button>
+                /
+                <button type="button" id="deleteField" style="border:none;background-color:#B0C4DE;">
+                    <img src="../../../public/assets/images/subtract.png" height="22px" width="25px" alt="">
+                </button>
+                
+            </p>
+            <div id="extraFields">
+
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "name",
+                        "class" => "form-control",
+                    ]
+                ); ?>
+                <label for="name">Name</label>
+            </div>
+
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "categoryName",
+                        "class" => "form-control",
+                    ]
+                ); ?>
+                <label for="categoryName">Category Name</label>
+            </div>
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "price",
+                        "class" => "form-control",
+                    ]
+                ); ?>
+                <label for="price">Price</label>
+            </div>
+            <div class="form-floating">
+                <?php echo $this->tag->textField(
+                    [
+                        "stock",
+                        "class" => "form-control",
+                    ]
+                ); ?>
+                <label for="stock">Stock</label>
+            </div>
+
+
+            <div class="form-floating ">
+                <?php echo $this->tag->submitButton(
+                    [
+                        "name" => "addProduct",
+                        "class" => "btn btn-primary w-100",
+                        "value" => "Add Product"
+                    ]
+                ); ?>
+            </div>
+            <div>
+                <?php if ($message) { ?>
+                    <p class="text-success">Added sucessfully</p>
+                    <?php echo $this->tag->linkTo(
+                        [
+                            "products/listProducts",
+                            "View all products",
+                            "class" => "btn btn-primary"
+                        ]
+                    )?>
+                <?php } elseif ($message != "") { ?>
+                    <p class="text-danger">There is some error</p>
+                <?php } ?>
+            </div>
+        </div>
+
+
+        <!----------------------------------- Variations ----------------------------------------->
+        <div class="col-md-4 p-0 m-0">
+            <p class="text-warning text-center bg-white"><b>Add Variations</b>
+                <button type="button" class="bg-white" id="showVariations" style="border:none">
+                    <img src="../../../public/assets/images/add.jpg" height="22px" width="22px" alt="">
+                </button>
+                /
+                <button type="button" class="bg-white" id="deleteVariations" style="border:none">
+                    <img src="../../../public/assets/images/subtract.png" height="22px" width="25px" alt="">
+                </button>
+            </p>
+            <div id="variationsField">
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="../../../public/assets/js/script.js"></script>

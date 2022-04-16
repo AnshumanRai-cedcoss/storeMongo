@@ -1,0 +1,59 @@
+<?php if(!isset($status)) $status=""?>
+<div class="justify-content-center d-flex text-center p-5">
+
+    <?php echo $this->tag->form(""); ?>
+    <h1 class="text-success">Signup Here</h1>
+    <div class="form-floating">
+        <?php echo $this->tag->textField(
+            [
+                "name",
+                "class" => "form-control",
+            ]
+        ); ?>
+        <label for="name">Name</label>
+    </div>
+
+    <div class="form-floating">
+        <?php echo $this->tag->textField(
+            [
+                "email",
+                "class" => "form-control",
+            ]
+        ); ?>
+        <label for="email">Email</label>
+    </div>
+    <div class="form-floating">
+        <?php echo $this->tag->passwordField(
+            [
+                "password",
+                "class" => "form-control",
+            ]
+        ); ?>
+        <label for="password">Password</label>
+    </div>
+    <div class="form-floating py-3">
+        <?php echo $this->tag->submitButton(
+            [
+                "name" => "signup",
+                "class" => "btn btn-primary w-100",
+                "value" => "Signup Here"
+            ]
+        ); ?>
+    </div>
+    <p>Already have an account!
+        <?php echo $this->tag->linkTo(
+            [
+                "index",
+                "Login"
+            ]
+        ) ?>
+    </p>
+    <div>
+        <?php if ($status) { ?>
+            <p class="text-success">Registered sucessfully</p>
+        <?php } elseif($status != "") { ?>
+            <p class="text-danger">Email already present</p>
+        <?php } ?>
+    </div>
+    </form>
+</div>
