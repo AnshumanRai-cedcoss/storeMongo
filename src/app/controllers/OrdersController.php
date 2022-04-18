@@ -40,38 +40,19 @@ class OrdersController extends Controller
         $this->view->data = $result;
         if ($this->request->has('Filter')) {
             $r = $this->request->getPost();
-            // echo "<pre>";
-            // print_r($r);
-            // die;
-            if (isset($r["status"])) {
-                $status =  strtolower($r["status"]);  
+            if ($this->request->has('status')) {
+                $status =  strtolower($r["status"]);
                 $res = $this->mongoConnection->orders->find(["status" => $status]);
                 $this->view->data = $res->toArray();
-            } if(isset($r["date"])) {
-                $filter =  strtolower($r["date"]);
-                $date = date('m/d/Y');
-                if($filter == "today")
-                {
-                $res = $this->mongoConnection->orders->find(["date" => $date]);
+            }
+            if ($this->request->has('date')) {
+                $date = date('m/d/Y', strtotime($r["date"]));
+                $res = $this->mongoConnection->orders->find(["date" => ['$gt' => $date]]);
                 $this->view->data = $res->toArray();
-                }
-                else if($filter == "this week")
-                {
-                    $date = date('m/d/Y',strtotime('last Sunday'));
-                    $res = $this->mongoConnection->orders->find(["date" => ['$gt' => $date]]);
-                    $this->view->data = $res->toArray();
-                }
-                else if($filter == "this month")
-                {
-                    $date = date('m/d/Y',strtotime('first day of this month'));
-                    $res = $this->mongoConnection->orders->find(["date" => ['$gt' => $date]]);
-                    $this->view->data = $res->toArray();
-                }
-                else if($filter == "custom")
-                {
+                if ($r["date"] == "Custom") {
                     $sDate = $r["start"];
                     $eDate = $r["end"];
-                    $eDate = date('m/d/Y',strtotime("+1 day"));
+                    $eDate = date('m/d/Y', strtotime("+1 day"));
                     $res = $this->mongoConnection->orders->find([
                         '$and' => [["date" => ['$gt' => $sDate]], ["date" => ['$lt' => $eDate]]]
                     ]);

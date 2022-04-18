@@ -13,22 +13,26 @@ $(document).ready(function () {
       responseData = $.parseJSON(response);
       console.log(responseData);
       if (responseData.variations.length > 0) {
-        var variations = `<select name="varient" class="w-100 p-2 text-center">
+        var variations = `<select name="varient" id="variationSelected" class="w-100 p-2 text-center">
             <option>------------------- Select Variations ----------------------</option>`;
         for (i in responseData.variations) {
           variations += `<option>`;
           for (j in responseData.variations[i]) {
             if(j != 'price')
-            variations += j + ":" + responseData.variations[i][j] + " ";
-            $("#price").val(responseData.variations[i]['price']);
+            variations += j + ":" + responseData.variations[i][j] + " "; 
           }
           variations += "</option>";
         }
         variations += `</select>`;
         $("#displayVariations").html(variations);
+        $("#price").val(responseData.variations[i]['price']);
       }
     });
   });
+  // $("body").on("change", "#variationSelected", function () {
+  //   var value = $(this).find(":selected").val();
+  //   console.log(value);
+  // });
 
   $("body").on("change", ".dateSelected", function () {
     

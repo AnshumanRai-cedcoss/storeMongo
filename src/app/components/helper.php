@@ -31,7 +31,7 @@ class helper extends Injectable
         $date = date('m/d/Y'); 
         $arr = [
             "Name" => $data['customerName'],
-            "quantity" => $data['quantity'],
+            "quantity" => (int)$data['quantity'],
             "product" => $data['product'],
             "varient" => $data['varient'],
             "price" => $data['price'],
