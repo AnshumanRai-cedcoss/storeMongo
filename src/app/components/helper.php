@@ -25,6 +25,25 @@ class helper extends Injectable
         return true;
     }
 
+    public function insertInOrders($data)
+    {
+        print_r($data);
+        $date = date('m/d/Y'); 
+        $arr = [
+            "Name" => $data['customerName'],
+            "quantity" => $data['quantity'],
+            "product" => $data['product'],
+            "varient" => $data['varient'],
+            "price" => $data['price'],
+            "total" => $data["price"]*$data["quantity"],
+            "date" => $date,
+            "status" => "paid"
+        ];
+        $this->mongoConnection->orders->insertOne($arr);
+        return true;
+    }
+
+
     public function updateProduct($data, $id)
     {
         $details = $this->getAdditional($data);

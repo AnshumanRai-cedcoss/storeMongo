@@ -1,0 +1,41 @@
+<main class="form-signup my-5 text-center" style="padding-left:35%;padding-right:35%;">
+
+    <?php echo $this->tag->form(""); ?>
+    <h1 class="h3 mb-3 fw-normal">Place Order</h1>
+
+    <div class="form-floating">
+        <?php echo $this->tag->textField(["customerName", "class" => "form-control"]); ?>
+        <label for="name"><?php echo 'Customer Name' ?></label>
+    </div>
+
+    <div class="form-floating">
+        <?php echo $this->tag->textField(["quantity", "class" => "form-control"]); ?>
+        <label for="quantity"><?php echo 'quantity' ?></label>
+    </div>
+
+    <div class="form-floating py-2 ">
+        <select name="product" class="w-100 p-2 productSelected text-center">
+            <option value="">------------------------- <?php echo 'Select Product' ?> ---------------------------</option>
+            <?php foreach ($data as $key => $value) {
+            ?> <option data-id='<?php echo $value['_id'] ?>'><?php echo $value["Name"]  ?></option><?php
+            } ?>
+        </select>
+    </div>
+
+    <div class="form-floating py-2" id="displayVariations">
+
+    </div>
+
+    <div class="form-floating">
+        <?php echo $this->tag->textField(["price", "class" => "pricetag form-control"]); ?>
+        <label for="price"> <?php echo 'price' ?></label>
+    </div>
+
+    <div class="form-floating">
+        <?php echo $this->tag->submitButton(
+            ["name" => "placeOrder", "value" => 'Place Order', "class" => "w-100 btn btn-lg btn-primary"]
+        ); ?>
+    </div>
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../../../public/assets/js/scriptOrder.js"></script>

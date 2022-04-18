@@ -29,11 +29,7 @@ $(document).ready(function() {
             for ($i in responseData.additional) {
                 add += $i+` :`+responseData.additional[$i]+`<br>`;
             }
-            $("#additional").html(add);
-      
-           
-
-            
+            $("#additional").html(add);           
 });
 });
 });
